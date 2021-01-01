@@ -7,7 +7,7 @@ using namespace std;
 long long int arr[1000001] = { 0, };
 
 int f1(double i) { return (int)floor(i - sqrt(i)); }
-int f2(double i) { return (int)floor(log10(i)); }
+int f2(double i) { return (int)floor(log(i)); }
 int f3(double i) { return (int)floor(i * pow(sin(i), 2)); }
 void cal(int i)
 {
@@ -37,7 +37,6 @@ int main()
 			if (arr[f1(i)] == 0) cal(f1(i));
 			if (arr[f2(i)] == 0) cal(f2(i));
 			if (arr[f3(i)] == 0) cal(f3(i));
-			cout << arr[f1(i)] << " "<< arr[f2(i)]<<" " << arr[f3(i)] << endl;
 			v.push_back((arr[f1(i)] + arr[f2(i)] + arr[f3(i)]) % 1000000);
 		}
 		
