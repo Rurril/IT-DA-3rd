@@ -36,5 +36,5 @@ int main() {
 
 	Solution();
 
-	return 0;
+	return (0);
 }
