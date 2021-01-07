@@ -14,14 +14,15 @@ string s1, s2;
 int L[1001][1001] = {0, };
 int ans;
 
-int LCS(int i, int j) {
+void LCS(int i, int j) {
 	if (i == 0 || j == 0)
 		L[i][j] = 0;
-	else if (s1[i] == s2[j])
-		L[i][j] = L[i-1][j-1] + 1;
-	else
-		L[i][j] = (L[i][j-1] > L[i-1][j]) ? L[i][j-1] : L[i-1][j];
-	return (L[i][j]);
+	else{
+		if (s1[i] == s2[j])
+			L[i][j] = L[i-1][j-1] + 1;
+		else
+			L[i][j] = (L[i][j-1] > L[i-1][j]) ? L[i][j-1] : L[i-1][j];
+	}
 }
 
 void Solution(){
