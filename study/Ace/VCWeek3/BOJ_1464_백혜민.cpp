@@ -24,7 +24,6 @@ int main()
 				if (i != j)
 					temp += s[j];
 			}
-
 			s = temp;
 		}
 	}
