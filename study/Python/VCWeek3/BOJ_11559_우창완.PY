@@ -1,4 +1,4 @@
-import sys
+
 n=12
 m=6
 square=[[0 for _ in range(m)] for j in range(n)]
