@@ -15,6 +15,31 @@ stack<char> st;
 
 //수정해야함
 
+int checkstack(stack<char> st, char a, char b, int value)
+{
+    int result = 0;
+    while (!st.empty())
+    {
+        char top = st.top();
+
+        if (top == a)
+            return -1;
+        else if (top == b)
+        {
+            st.pop();
+            result *= value;
+            st.push((char)result);
+            break;
+        }
+        else
+        {
+            result += st.top() - '0';
+        }
+
+        return result;
+    }
+}
+
 int main()
 {
     string s;
@@ -22,39 +47,40 @@ int main()
 
     int sum = 0;
 
-    for(int i = 0; i < s.size(); i++)
+    for (int i = 0; i < s.length(); i++)
     {
-        if(sum == -1)
+        if (sum == -1)
         {
             cout << 0 << endl;
-            return;
+            return 0;
         }
 
-        if(s[i] == '(' || s[i] == '[') //열린 괄호만 스택에 저장
+        if (s[i] == '(' || s[i] == '[') //열린 괄호만 스택에 저장
         {
-            st.push(s[i]); 
+            st.push(s[i]);
         }
-        else{
-            if(!st.empty()) //닫혀있는 괄호인데 비어있으면 오류
+        else
+        {
+            if (!st.empty()) //닫혀있는 괄호인데 비어있으면 오류
             {
                 cout << 0 << endl;
-                return;
+                return 0;
             }
-            if(s[i] == ')')
+            if (s[i] == ')')
             {
-                if(st.top() == '(')
+                if (st.top() == '(')
                 {
                     st.pop();
                     st.push('2'); //()인 경우
                 }
                 else
                 {
-                    sum = checkstack(st, '[','(',2);
-                }   
+                    sum = checkstack(st, '[', '(', 2);
+                }
             }
             else
             {
-                if(st.top() == '[')
+                if (st.top() == '[')
                 {
                     st.pop();
                     st.push('3'); //[]인 경우
@@ -64,58 +90,24 @@ int main()
                     sum = checkstack(st, '(', '[', 3);
                 }
             }
-            
         }
 
+    }
         int total = 0;
-        while(!st.empty())
+        while (!st.empty())
         {
-            if(st.top() == '(' || st.top() == ')' || 
-            st.top() == '[' || st.top() == ']')
+            if (st.top() == '(' || st.top() == ')' ||
+                st.top() == '[' || st.top() == ']')
             {
                 cout << 0 << endl;
-                return;
+                return 0;
             }
-            
-            //total += (int)st.pop();
 
+            total += st.top() - '0';
         }
 
-        cout << total << endl;
-
-    }
-
-
-
-
+    
+    cout << total << endl;
 
     return 0;
-
-}
-
-int checkstack(stack<char> stack, char a, char b, int value)
-{
-    int result = 0;
-    while(!stack.empty())
-    {
-      char top = stack.top();
-
-      if(top == a)
-        return -1;
-      else if (top == b)
-      {
-          stack.pop();
-          result *= value;
-          stack.push((char)result);
-          break;
-      }
-      else
-      {
-          //result += stack.pop() - '0';
-      }
-      
-      return result;
-      
-
-    }
 }
