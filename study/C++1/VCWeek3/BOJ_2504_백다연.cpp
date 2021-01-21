@@ -34,6 +34,7 @@ int checkstack(stack<char> st, char a, char b, int value)
         else
         {
             result += st.top() - '0';
+            st.pop();
         }
 
         return result;
@@ -104,6 +105,7 @@ int main()
             }
 
             total += st.top() - '0';
+            st.pop();
         }
 
     
