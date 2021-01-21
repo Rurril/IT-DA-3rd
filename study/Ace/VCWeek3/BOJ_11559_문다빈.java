@@ -113,3 +113,30 @@ public class PuyoPuyo {
 	}
 
 }
+
+/*
+
+static void move() {
+		boolean sw = false;
+		for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 12; j++) {
+                if (Map[j][i] == '.') {
+                    for (int k = j + 1; k < 12; k++) {
+                        if (Map[k][i] != '.') {
+                            Map[j][i] = Map[k][i];
+                            Map[k][i] = '.';
+                            sw = false;
+                            break;
+                        }
+                        else {
+                        	sw = true;
+                        }
+                    }
+                }
+                if(sw)
+                	break;//더이상 윗줄에 뿌요없으면 비교 x
+            }
+        }
+	}
+
+*/
