@@ -23,11 +23,11 @@ public class BOJ2502 {
 		}
 		
 
-		for (int i=1;i<31;i++) {
+		/*for (int i=1;i<31;i++) {
 				System.out.printf("%d 번째a %d\n",i, DP[i][0]);
 				System.out.printf("%d 번째b %d\n",i, DP[i][1]);
 		}
-		
+		*/
 		//if (D==3) {
 			
 		//	return ;
