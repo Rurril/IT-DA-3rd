@@ -61,7 +61,6 @@ if __name__=="__main__":
                 if puyo[i][j]!='.' and not visit[i][j]:
                     visit[i][j]=True
                     result+=bfs(i,j)
-
         if result>0:
             ans+=1
         else:
