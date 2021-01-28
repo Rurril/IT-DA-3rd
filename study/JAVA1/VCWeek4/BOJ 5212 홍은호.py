@@ -43,11 +43,14 @@ for i in range(r-1, -1, -1):
 
 for i in range(start_row,  end_row+1):
     tmp = [i for i, value in enumerate(new_graph[i]) if value == 'X']
+    if not tmp:
+        continue
     min_tmp = tmp[0]
     max_tmp = tmp[-1]
     min_index = min(min_index, min_tmp)
     max_index = max(max_index, max_tmp)
 
-
-print(graph)
-print(new_graph)
+for i in range(start_row, end_row+1):
+    for j in range(min_index, max_index+1):
+        print(new_graph[i][j], end='')
+    print()
