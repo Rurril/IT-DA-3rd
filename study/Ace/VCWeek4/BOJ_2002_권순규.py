@@ -6,7 +6,7 @@ Order = []
 pointer = 0
 for _ in range(N):
     car = input()
-    db[car]=False
+    IsPaased[car]=False
     Order.append(car)
 
 for _ in range(N):
