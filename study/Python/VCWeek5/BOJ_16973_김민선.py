@@ -1,21 +1,22 @@
 import sys
 from collections import deque
 
-def isEmpty() :
-    for i in range(N):
-        for j in range(M):
-            if N - H < i:
-                emptyChk[i][j] = 0
-            if M - W < j:
-                emptyChk[i][j] = 0
-            if kan[i][j] == 1: # 벽이 있으면
-                for k in range(i - H + 1, i + 1):
-                    for l in range(j - W + 1, j + 1):
-                        if 0 <= k < N and 0 <= l < M:
-                            emptyChk[k][l] = 0
+# 이해를 못하겠음
+# def isEmpty() :
+#     for i in range(N):
+#         for j in range(M):
+#             if N - H < i:
+#                 emptyChk[i][j] = 0
+#             if M - W < j:
+#                 emptyChk[i][j] = 0
+#             if kan[i][j] == 1: # 벽이 있으면
+#                 for k in range(i - H + 1, i + 1):
+#                     for l in range(j - W + 1, j + 1):
+#                         if 0 <= k < N and 0 <= l < M:
+#                             emptyChk[k][l] = 0
 
 def bfs():
-    isEmpty()
+    #isEmpty()
     q = deque()
     q.append([Sr, Sc, 0]); visit[Sr][Sc] = 1
     ans = -1
