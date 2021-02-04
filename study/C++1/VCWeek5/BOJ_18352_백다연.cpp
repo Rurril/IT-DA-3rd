@@ -17,7 +17,7 @@ vector<int> v[300001];
 void bfs()
 {
     memset(cnt, -1, sizeof(cnt));
-    queue<pair<int, int>> q;
+    queue<pair<int, int>> q; //
     q.push({x, 0}); //출발점 넣기
     cnt[x] = 0;
 
@@ -30,10 +30,10 @@ void bfs()
 
         for (int i = 0; i < v[first].size(); i++)
         {
-            if (cnt[i] == -1)
+            if (cnt[v[first][i]] == -1)
             {
-                q.push({i, second + 1}); //아직방문하지 않았다면 거리를 저장해줌
-                cnt[i] = second + 1;
+                q.push({v[first][i], second + 1}); //아직방문하지 않았다면 거리를 저장해줌
+                cnt[v[first][i]] = second + 1;
             }
         }
     }
