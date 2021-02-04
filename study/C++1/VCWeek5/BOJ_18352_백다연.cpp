@@ -9,74 +9,61 @@
 #include <algorithm>
 
 using namespace std;
-//18352
-//X로부터 출발하여 도달할 수 있는 도시 중에서, 최단 거리가 K인 모든 도시의 번호
-//수정해야함
-int n,m,k,x;
-vector <int> answer;
-vector <int> v[300001];
-int visit[300001];
 
-void bfs(int first)
+int n, m, k, x;
+int cnt[300001];
+vector<int> v[300001];
+
+void bfs()
 {
-    queue<int> q;
-    q.push(first);
+    memset(cnt, -1, sizeof(cnt));
+    queue<pair<int, int>> q;
+    q.push({x, 0}); //출발점 넣기
+    cnt[x] = 0;
 
-    while(!q.empty())
+    while (!q.empty())
     {
-        int now = q.front();
+        int first = q.front().first;
+        int second = q.front().second;
+
         q.pop();
 
-        for(int i = 0; i < v[now].size(); i++)
+        for (int i = 0; i < v[first].size(); i++)
         {
-            int next = v[now][i]; //출발점과 연결된 노드
-            if(visit[next] == 0) //방문한적 없다면
+            if (cnt[i] == -1)
             {
-                visit[next] = visit[now] + 1; // 출발지로부터 거리 저장
-                q.push(next);
+                q.push({i, second + 1}); //아직방문하지 않았다면 거리를 저장해줌
+                cnt[i] = second + 1;
             }
         }
-
-
     }
+
+    vector<int> ans;
+
+    for (int i = 1; i <= n; ++i)
+    {
+        if (cnt[i] == k)
+            ans.push_back(i); //찾고자하는 거리일때 저장
+    }
+
+    if (ans.empty())
+        ans.push_back(-1);
+
+    for (int i = 0; i < ans.size(); i++)
+        cout << ans[i] << endl;
 }
-
-
 
 int main()
 {
-    //도시개수, 도로개수, 거리정보, 출발도시
-    cin >> n >> m >> k >> x; 
+    cin >> n >> m >> k >> x;
 
-    for(int i = 0; i <m; i++)
+    for (int i = 0; i < m; i++)
     {
         int a, b;
         cin >> a >> b;
+
         v[a].push_back(b);
     }
 
-    visit[x] = 0; //출발하는 곳
-    bfs(x);
-
-    for(int i = 1; i <=n; i++)
-    {
-        if(visit[i] == k)
-            answer.push_back(i);
-    }
-
-    if(answer.size()== 0)
-        cout << -1 << endl;
-    
-    else
-    {
-        sort(answer.begin(), answer.end());
-        for(int i = 0; i < answer.size(); i++)
-            cout << answer[i] << endl;
-    }
-    
-
-
-
-    
-    return 0;
+    bfs();
 }
