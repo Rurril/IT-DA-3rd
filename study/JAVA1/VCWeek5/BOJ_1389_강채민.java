@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class 1389_ {
+public class 1389_KevinBacon_Step {
 
 	public static void main(String[] args) {
 		
@@ -8,9 +8,6 @@ public class 1389_ {
 		
 		int N = input.nextInt();
 		int M = input.nextInt();
-		
-		//int result[] = new int[N+1];
-		//int check[] = new int[N+1];
 		
 		ArrayList<Integer> Kevin[] = new ArrayList[N+1];
 		for(int n = 0; n <= N; n++)
@@ -22,9 +19,12 @@ public class 1389_ {
 			int B = input.nextInt();
 			
 			Kevin[A].add(B);
+			Kevin[B].add(A);
 		}
 		
 		ArrayList<Integer> answer = new ArrayList<>();
+		
+		Queue<Integer> find = new LinkedList<>();
 		
 		for(int i = 1; i <= N; i++) {
 			
@@ -33,11 +33,9 @@ public class 1389_ {
 			
 			check[i] = 1;
 			
-			Queue<Integer> find = new LinkedList<>();
+			//Queue<Integer> find = new LinkedList<>();
 			find.add(i);
 			int count = 0;
-			
-			int min = Integer.MAX_VALUE;
 			
 			while(!find.isEmpty()) {
 				
@@ -50,27 +48,28 @@ public class 1389_ {
 					
 					result[Kevin[F].get(f)] = result[F] + 1;
 					count = count + result[Kevin[F].get(f)];
+					
+					check[Kevin[F].get(f)] = 1;
+					find.add(Kevin[F].get(f));
 				}
 			}
 			
-			//answer.add(count);
-			
-			if(min >= count) {
-				min = count;
-				answer.add(count);
-			}
+			answer.add(count);
 		}
 		
-		/*
-		int min = Integer.MAX_VALUE;
+		int min = answer.get(0);
+		int final_answer = 1;
 		
 		for(int a = 1; a < answer.size(); a++) {
 			
-			if(min >= answer.get(a)) {
-				System.out.println(a-1);
+			if(min > answer.get(a)) {
+				min = answer.get(a);
+				final_answer = a+1;
 			}
+				
 		}
-		*/
+		
+		System.out.println(final_answer);
 
 	}
 
