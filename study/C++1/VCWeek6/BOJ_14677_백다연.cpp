@@ -22,30 +22,31 @@ int solve(int l, int r, int now)
         return dp[l][r];
 
 
-    int &ret = dp[l][r];
+    int result = 0;
+    result = dp[l][r];
 
-    ret = 1;
+	//ret = 1;
 
     if (now == -1) //첫날
     {
-        ret = 0;
+        result = 0;
         now = 0;
     }
 
     if (now == num[l] && now == num[r]) 
     {
-        ret += max(solve(l + 1, r, (now + 1) % 3), solve(l, r - 1, (now + 1) % 3)); //양쪽비교
+        result += max(solve(l + 1, r, (now + 1) % 3), solve(l, r - 1, (now + 1) % 3)); //양쪽비교
     }
     else if (now != num[l] && now == num[r]) //무조건 맨끝에 뜯는경우
     {
-        ret += solve(l, r - 1, (now + 1) % 3);
+        result += solve(l, r - 1, (now + 1) % 3);
     }
     else if (now == num[l] && now != num[r]) //왼쪽
     {
-        ret += solve(l + 1, r, (now + 1) % 3);
+        result += solve(l + 1, r, (now + 1) % 3);
     }
 
-    return ret;
+    return result;
 }
 
 int main()
