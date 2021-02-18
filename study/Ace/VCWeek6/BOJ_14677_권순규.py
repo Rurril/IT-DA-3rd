@@ -1,4 +1,3 @@
-# 틀려서 모르겠음
 def bfs():
     visited = [-1] * (N+1)
     
@@ -7,14 +6,15 @@ def bfs():
     while q:
         location, n, start, end, i = q.popleft()
 
-        if start < N and n > visited[start] and med[start] == order[i]:
-            visited[start] = n+1
-            q.append((start,n+1,start+1,end,(i+1)%3))
-            
-        if end >= 0 and n > visited[end] and med[end] == order[i]:
-            visited[end] = n+1
-            q.append((end,n+1,start,end-1,(i+1)%3))
-            
+        if start <= end: # 이 조건문이 중요
+            if start < N and n > visited[start] and med[start] == order[i]:
+                visited[start] = n+1
+                q.append((start,n+1,start+1,end,(i+1)%3))
+                
+            if end >= 0 and n > visited[end] and med[end] == order[i]:
+                visited[end] = n+1
+                q.append((end,n+1,start,end-1,(i+1)%3))
+                
         #print(visited)
     
     return max(visited)
