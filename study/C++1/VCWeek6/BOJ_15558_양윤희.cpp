@@ -1,10 +1,10 @@
 #include<iostream>
 #include <queue>
 using namespace std;
-int N, K, pivot, time;
-int arr[100001][2];
-queue<pair<int, int>> q; 
-
+int N, K, pivot;
+int arr[200001][3];
+int visit[200001][3];
+queue<pair<pair<int, int>, int>> q; 
 bool bfs() {
 	int direct[4][2] = {
 1,0, //¾Æ·¡
@@ -13,20 +13,23 @@ K,-1,//¿Þ
 K,1  //¿À¸¥
 	};
 	while (!q.empty()) {
-		pair<int, int> p = q.front();
+		pair<int, int> p = q.front().first;
 		int y = p.first;
 		int x = p.second;
+		int time = q.front().second;
 		q.pop();
+		if (time >= N) return false;
+
 		for (int i = 0;i < 4; i++) {
 			int ny = y + direct[i][0];
 			int nx = x + direct[i][1];		
-			if (ny >= N)return true;
-			if (arr[ny][nx] == 0 || ny < time || nx < 0 || nx > 1) {
+			if (ny >= N && nx>=0 && nx<2 )return true;
+			if (arr[ny][nx] == 0 || ny < time || nx < 0 || nx > 1 || visit[ny][nx]== 1 || ny>0) {
 				continue;
 			}
-			q.push(make_pair(ny, nx));
+			visit[ny][nx] = 1;
+			q.push(make_pair(make_pair(ny, nx), time+1));
 		}
-		time++;
 	}
 	return false;
 }
@@ -39,7 +42,8 @@ int main (void) {
 			arr[i][j] = k - '0';
 		}
 	}
-	q.push(make_pair(0, 0));
+	visit[0][0] = 1;
+	q.push(make_pair(make_pair(0, 0),0));
 	if (bfs()) cout << 1;
 	else cout << 0;
 }
